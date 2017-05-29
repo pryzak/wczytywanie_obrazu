@@ -16,12 +16,41 @@ public class DivideImage {
     
     
     public BufferedImage[][] divide(BufferedImage bi, int side) {
+        int nHorizontal = bi.getWidth() / side;
+        if(nHorizontal * side < bi.getWidth())
+            nHorizontal++;
+        int nVertical = bi.getHeight() / side;
+        if(nVertical * side < bi.getHeight())
+            nVertical++;
+        int[] horizontalSides = new int[nHorizontal];
+        int[] verticalSides = new int[nVertical];
+        int restHorizontal = bi.getWidth() - ((bi.getWidth() / side) * side);
+        int restVertical = bi.getHeight()- ((bi.getHeight() / side) * side);     
+        for(int i = 0; i < nHorizontal - 1; i++)
+            horizontalSides[i] = side;
+        horizontalSides[nHorizontal - 1] = restHorizontal;
+        for(int i = 0; i < nVertical - 1; i++)
+            verticalSides[i] = side;
+        verticalSides[nVertical - 1] = restVertical;
+        BufferedImage[][] bis = new BufferedImage[nVertical][nHorizontal];
+        int biType = bi.getType();
+        for(int i = 0; i < nVertical; i++) {
+            for(int j = 0; j < nHorizontal; j++) {
+                bis[i][j] = new BufferedImage(horizontalSides[j], verticalSides[i], biType);
+            }
+        }
+        for(int i = 0; i < bi.getHeight(); i++) {
+            for(int j = 0; j < bi.getWidth(); j++) {
+                
+                //TODO wypelnianie mniejszych obrazow pikselami wiekszego
+            }
+        }
         
         //TODO
-        return null;
+        return bis;
     }
     
-    public BufferedImage connect(BufferedImage[][] bis) {
+    public BufferedImage merge(BufferedImage[][] bis) {
         int width = 0, height = 0;
         for (BufferedImage[] bi : bis) {
             height += bi[0].getHeight();
