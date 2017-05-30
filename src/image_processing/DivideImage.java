@@ -39,14 +39,25 @@ public class DivideImage {
                 bis[i][j] = new BufferedImage(horizontalSides[j], verticalSides[i], biType);
             }
         }
-        for(int i = 0; i < bi.getHeight(); i++) {
-            for(int j = 0; j < bi.getWidth(); j++) {
-                
-                //TODO wypelnianie mniejszych obrazow pikselami wiekszego
+        int x = 0, y = 0;
+        int pastX = 0, pastY = 0;
+        for(int i = 0; i < bis.length; i++) {
+            for(int j = 0; j < bis[i].length; j++) {
+                y = 0 + pastY;
+                for(int yy = 0; yy < verticalSides[i]; yy++) {
+                    x = 0 + pastX;
+                    for(int xx = 0; xx < horizontalSides[j]; xx++) {
+                        Color c = new Color(bi.getRGB(x, y));
+                        bis[i][j].setRGB(xx, yy, c.getRGB());
+                        x++;
+                    }
+                    y++;
+                }
+                pastX += horizontalSides[j];
             }
+            pastX = 0;
+            pastY += verticalSides[i];
         }
-        
-        //TODO
         return bis;
     }
     
@@ -68,7 +79,7 @@ public class DivideImage {
                 for(int i = 0; i < bi_.getHeight(); i++) {
                     localX = globalX;
                     for(int j = 0; j < bi_.getWidth(); j++) {
-                        Color c = new Color(bi.getRGB(j, i));
+                        Color c = new Color(bi_.getRGB(j, i));
                         bi.setRGB(localX, localY, c.getRGB());
                         localX++;
                     }
