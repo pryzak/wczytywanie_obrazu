@@ -203,5 +203,13 @@ public class FXMLDocumentController implements Initializable {
         bi = filters.meanFilter(bi, Integer.parseInt(maskSide.getText()));
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
+    
+    @FXML
+    private void medianFilter(ActionEvent event) {
+        if(filters == null)
+            filters = new Filters();
+        bi = filters.medianFilter(bi, Integer.parseInt(maskSide.getText()));
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
 
 }
