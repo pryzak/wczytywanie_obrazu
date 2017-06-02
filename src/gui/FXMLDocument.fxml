@@ -31,9 +31,11 @@
       <Button fx:id="erosionBtn" layoutX="37.0" layoutY="426.0" mnemonicParsing="false" onAction="#erosion" prefHeight="25.0" prefWidth="149.0" text="Erozja" />
       <Button fx:id="openingBtn" layoutX="37.0" layoutY="466.0" mnemonicParsing="false" onAction="#opening" prefHeight="25.0" prefWidth="149.0" text="Otwarcie" />
       <Button fx:id="closingBtn" layoutX="37.0" layoutY="506.0" mnemonicParsing="false" onAction="#closing" prefHeight="25.0" prefWidth="149.0" text="Zamknięcie" />
-      <Button fx:id="lowPass1" layoutX="37.0" layoutY="546.0" mnemonicParsing="false" onAction="#lowPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr dolnoprzepustowy" />
-      <Button fx:id="highPass1" layoutX="37.0" layoutY="586.0" mnemonicParsing="false" onAction="#highPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr górnoprzepustowy" />
-      <Button fx:id="binarizeBHTBtn2" layoutX="37.0" layoutY="626.0" mnemonicParsing="false" onAction="#bhtBinarization2" prefHeight="25.0" prefWidth="149.0" text="BHT2" />
-      <Button fx:id="binarizeBHTBtn3" layoutX="37.0" layoutY="666.0" mnemonicParsing="false" onAction="#bhtBinarization3" prefHeight="25.0" prefWidth="149.0" text="BHT3" />
+      <Button fx:id="lowPass1" layoutX="37.0" layoutY="638.0" mnemonicParsing="false" onAction="#lowPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr dolnoprzepustowy" />
+      <Button fx:id="highPass1" layoutX="37.0" layoutY="674.0" mnemonicParsing="false" onAction="#highPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr górnoprzepustowy" />
+      <Button fx:id="binarizeBHTBtn2" layoutX="37.0" layoutY="809.0" mnemonicParsing="false" onAction="#bhtBinarization2" prefHeight="25.0" prefWidth="149.0" text="BHT2" />
+      <Button fx:id="binarizeBHTBtn3" layoutX="37.0" layoutY="847.0" mnemonicParsing="false" onAction="#bhtBinarization3" prefHeight="25.0" prefWidth="149.0" text="BHT3" />
+      <TextField fx:id="maskSide" layoutX="37.0" layoutY="569.0" promptText="Długość maski" />
+      <Button fx:id="meanFilter" layoutX="37.0" layoutY="604.0" mnemonicParsing="false" onAction="#meanFilter" prefHeight="25.0" prefWidth="149.0" text="Filtr średniej kroczącej" />
    </children>
 </AnchorPane>

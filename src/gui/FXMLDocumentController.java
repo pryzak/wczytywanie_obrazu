@@ -1,6 +1,5 @@
 package gui;
 
-import image_processing.BHT;
 import image_processing.Binarization;
 import image_processing.Filters;
 import image_processing.GrayScale;
@@ -45,6 +44,8 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     TextField threshold; 
+    @FXML
+    TextField maskSide; 
     
     private GrayScale gs;
     private Binarization binarization;
@@ -192,6 +193,14 @@ public class FXMLDocumentController implements Initializable {
         if(filters == null)
             filters = new Filters();
         bi = filters.filter(bi, filters.highPass);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
+    private void meanFilter(ActionEvent event) {
+        if(filters == null)
+            filters = new Filters();
+        bi = filters.meanFilter(bi, Integer.parseInt(maskSide.getText()));
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
 
