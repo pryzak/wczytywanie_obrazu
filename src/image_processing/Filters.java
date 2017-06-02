@@ -93,13 +93,13 @@ public class Filters {
                 else {
                     medianReds = (reds.get(reds.size() / 2 - 1) + reds.get(reds.size() / 2)) / 2;
                 }
-                if(reds.size() % 2 == 1) {
+                if(greens.size() % 2 == 1) {
                     medianGreens = greens.get(greens.size() / 2);
                 }
                 else {
                     medianGreens = (greens.get(greens.size() / 2 - 1) + greens.get(greens.size() / 2)) / 2;
                 }
-                if(reds.size() % 2 == 1) {
+                if(blues.size() % 2 == 1) {
                     medianBlues = blues.get(blues.size() / 2);
                 }
                 else {
