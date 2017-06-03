@@ -21,6 +21,65 @@ public class Filters {
         return bi;
     }
     
+    public BufferedImage universalFilter(BufferedImage bi, int[] filter) {
+        if(Math.sqrt(filter.length) % 1 != 0)
+            throw new RuntimeException("Mask side must be integer!");
+        int side = (int) Math.sqrt(filter.length);
+        int iter = 0;
+        int[][] mask = new int[side][side];
+        for(int i = 0; i < side; i++)
+            for(int j = 0; j < side; j++)
+                mask[j][i] = filter[iter++];
+        Color[][] newColors = new Color[bi.getWidth()][bi.getHeight()];
+        int n = (side - 1) / 2;
+        for (int i = 0; i < bi.getHeight(); i++) {
+            for (int j = 0; j < bi.getWidth(); j++) {
+                int weightSumR = 0;
+                int weightSumG = 0;
+                int weightSumB = 0;
+                int sum = 0;
+                for(int ii = i - n, iii = 0; ii <= i + n; ii++, iii++) {
+                    if(ii < 0 || ii >= bi.getHeight())
+                        continue;
+                    for(int jj = j - n, jjj = 0; jj <= j + n; jj++, jjj++) {
+                        if(jj < 0 || jj >= bi.getWidth())
+                            continue;
+                        Color c = new Color(bi.getRGB(jj, ii));
+                        weightSumR += c.getRed() * mask[jjj][iii];
+                        weightSumG += c.getGreen()* mask[jjj][iii];
+                        weightSumB += c.getBlue()* mask[jjj][iii];
+                        sum += mask[jjj][iii];
+                    }
+                }
+                if(sum == 0)
+                    sum = 1;
+                int newR = weightSumR / sum;
+                if(newR < 0)
+                    newR = 0;
+                else if(newR > 255)
+                    newR = 255;
+                int newG = weightSumG / sum;
+                if(newG < 0)
+                    newG = 0;
+                else if(newG > 255)
+                    newG = 255;
+                int newB = weightSumB / sum;
+                if(newB < 0)
+                    newB = 0;
+                else if(newB > 255)
+                    newB = 255;
+                Color newColor = new Color(newR, newG, newB);
+                newColors[j][i] = newColor;
+            }
+        }
+        for (int i = 0; i < bi.getHeight(); i++) {
+            for (int j = 0; j < bi.getWidth(); j++) {
+                bi.setRGB(j, i, newColors[j][i].getRGB());
+            }
+        }
+        return bi;
+    }
+    
     public BufferedImage meanFilter(BufferedImage bi, int x) throws RuntimeException {
         if(x % 2 == 0)
             throw new RuntimeException("x is even!");
@@ -84,9 +143,9 @@ public class Filters {
                 Collections.sort(reds);
                 Collections.sort(greens);
                 Collections.sort(blues);
-                int medianReds = 0;
-                int medianGreens = 0;
-                int medianBlues = 0;
+                int medianReds;
+                int medianGreens;
+                int medianBlues;
                 if(reds.size() % 2 == 1) {
                     medianReds = reds.get(reds.size() / 2);
                 }

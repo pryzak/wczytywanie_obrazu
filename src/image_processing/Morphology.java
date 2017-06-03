@@ -26,9 +26,7 @@ public class Morphology {
                     throw new RuntimeException("Image is not binary   " + c.getRed() + ", " + c.getGreen() + ", " + c.getBlue());
             }
         }
-        
         int[][] newColors = new int[bi.getWidth()][bi.getHeight()];
-        
         for (int i = 0; i < bi.getHeight(); i++) {
             for (int j = 0; j < bi.getWidth(); j++) {
                 newColors[j][i] = new Color(255, 255, 255).getRGB();
@@ -51,13 +49,11 @@ public class Morphology {
                 }
             }
         }
-        
         for (int i = 0; i < bi.getHeight(); i++) {
             for (int j = 0; j < bi.getWidth(); j++) {
                 bi.setRGB(j, i, newColors[j][i]);
             }
         }
-        
         return bi;
     }
     
@@ -72,9 +68,7 @@ public class Morphology {
                     throw new RuntimeException("Image is not binary");
             }
         }
-        
         int[][] newColors = new int[bi.getWidth()][bi.getHeight()];
-        
         for (int i = 0; i < bi.getHeight(); i++) {
             for (int j = 0; j < bi.getWidth(); j++) {
                 newColors[j][i] = new Color(0, 0, 0).getRGB();
@@ -97,13 +91,11 @@ public class Morphology {
                 }
             }
         }
-        
         for (int i = 0; i < bi.getHeight(); i++) {
             for (int j = 0; j < bi.getWidth(); j++) {
                 bi.setRGB(j, i, newColors[j][i]);
             }
         }
-        
         return bi;
     }
 }

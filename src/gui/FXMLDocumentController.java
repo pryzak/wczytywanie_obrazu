@@ -193,6 +193,10 @@ public class FXMLDocumentController implements Initializable {
         if(filters == null)
             filters = new Filters();
         bi = filters.filter(bi, filters.highPass);
+//        int[] filter = new int[filters.highPass.length];
+//        for(int i = 0; i < filters.highPass.length; i++)
+//            filter[i] = (int) filters.highPass[i];
+//        bi = filters.universalFilter(bi, filter);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
@@ -201,6 +205,7 @@ public class FXMLDocumentController implements Initializable {
         if(filters == null)
             filters = new Filters();
         bi = filters.meanFilter(bi, Integer.parseInt(maskSide.getText()));
+//        bi = filters.universalFilter(bi, new int[]{1,1,1,1,1,1,1,1,1});
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
