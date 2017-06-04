@@ -109,6 +109,14 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    private void thresholdBinarization2(ActionEvent event) {
+        if(binarization == null)
+            binarization = new Binarization();
+        bi = binarization.binarize2(bi, Integer.parseInt(threshold.getText()));
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
     private void otsuBinarization(ActionEvent event) {
         if(binarization == null)
             binarization = new Binarization();
@@ -135,6 +143,15 @@ public class FXMLDocumentController implements Initializable {
         if(binarization == null)
             binarization = new Binarization();
         bi = binarization.bhtBinarize3(bi);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
+    private void bernsenBinarization(ActionEvent event) {
+        if(binarization == null)
+            binarization = new Binarization();
+//        bi = binarization.bernsenBinarize(bi, Integer.parseInt(maskSide.getText()));
+        bi = binarization.bernsenBinarize2(bi, Integer.parseInt(maskSide.getText()), 100, 15);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     

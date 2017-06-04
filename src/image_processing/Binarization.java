@@ -9,6 +9,7 @@ public class Binarization {
 //    private OtsuThresholding ot;
     private Otsu ot;
     private BHT bht;
+    private Bernsen bernsen;
     
     public BufferedImage binarize(BufferedImage bi, int threshold) {
         for (int i = 0; i < bi.getHeight(); i++) {
@@ -24,7 +25,26 @@ public class Binarization {
                 else {
                     newColor = new Color(255, 255, 255);
                 }
-                                
+                bi.setRGB(j,i,newColor.getRGB());
+            }
+        }
+        return bi;
+    }
+    
+    public BufferedImage binarize2(BufferedImage bi, int threshold) {
+        for (int i = 0; i < bi.getHeight(); i++) {
+            for (int j = 0; j < bi.getWidth(); j++) {
+                Color c = new Color(bi.getRGB(j, i));
+                int red = c.getRed();
+                int green = c.getGreen();
+                int blue = c.getBlue();
+                Color newColor;
+                if(red < threshold || green < threshold || blue < threshold) {
+                    newColor = new Color(0, 0, 0);
+                }
+                else {
+                    newColor = new Color(255, 255, 255);
+                }
                 bi.setRGB(j,i,newColor.getRGB());
             }
         }
@@ -43,6 +63,27 @@ public class Binarization {
         int threshold = (int) ot.getOtsuThreshold(grayScaleArray);
         System.out.println(threshold);
         bi = binarize(bi, threshold);
+        return bi;
+    }
+    
+    public BufferedImage bernsenBinarize(BufferedImage bi, int side) {
+        if(bernsen == null)
+            bernsen = new Bernsen();
+        if(gs == null)
+            gs = new GrayScale();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        bi = bernsen.binarize1(bi, side);
+        return bi;
+    }
+    public BufferedImage bernsenBinarize2(BufferedImage bi, int side, int gThreshold, int epsilon) {
+        if(bernsen == null)
+            bernsen = new Bernsen();
+        if(gs == null)
+            gs = new GrayScale();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        bi = bernsen.binarize1(bi, side, gThreshold, epsilon);
         return bi;
     }
     

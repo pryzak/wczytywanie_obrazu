@@ -10,11 +10,11 @@
 
 <AnchorPane id="threshold" fx:id="windowPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="907.0" prefWidth="1288.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLDocumentController">
    <children>
-      <Button fx:id="chooseFile" layoutX="37.0" layoutY="21.0" mnemonicParsing="false" onAction="#chooseFile" prefHeight="25.0" prefWidth="149.0" text="Wybierz grafikę ..." />
+      <Button fx:id="chooseFile" layoutX="37.0" layoutY="21.0" mnemonicParsing="false" onAction="#chooseFile" prefHeight="25.0" prefWidth="149.0" text="Wybierz plik..." />
       <Label fx:id="labelPlik" layoutX="197.0" layoutY="21.0" prefHeight="25.0" prefWidth="367.0" text="Nie wybrano pliku" />
       <Button fx:id="resetImage" disable="true" layoutX="937.0" layoutY="21.0" mnemonicParsing="false" onAction="#resetImage" prefHeight="25.0" prefWidth="149.0" text="Wczytaj obraz ponownie" />
-      <Button fx:id="grayScaleYUV" layoutX="37.0" layoutY="80.0" mnemonicParsing="false" onAction="#grayScaleYUV" prefHeight="25.0" prefWidth="149.0" text="Skala szarości YUV" />
-      <Button fx:id="grayScaleAvg" layoutX="37.0" layoutY="122.0" mnemonicParsing="false" onAction="#grayScaleAvg" prefHeight="25.0" prefWidth="149.0" text="Skala szarości Średnia" />
+      <Button fx:id="grayScaleYUV" layoutX="37.0" layoutY="76.0" mnemonicParsing="false" onAction="#grayScaleYUV" prefHeight="25.0" prefWidth="149.0" text="Skala szarości YUV" />
+      <Button fx:id="grayScaleAvg" layoutX="37.0" layoutY="105.0" mnemonicParsing="false" onAction="#grayScaleAvg" prefHeight="25.0" prefWidth="149.0" text="Skala szarości Średnia" />
       <Pane fx:id="imagePane" layoutX="210.0" layoutY="80.0" prefHeight="792.0" prefWidth="1026.0" style="-fx-background-color: lightgrey;">
          <children>
             <ImageView fx:id="imageView" fitHeight="792.0" fitWidth="1026.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
@@ -22,10 +22,12 @@
       </Pane>
       <Separator layoutX="43.0" layoutY="65.0" prefHeight="0.0" prefWidth="1200.0" />
       <Separator layoutX="194.0" layoutY="76.0" orientation="VERTICAL" prefHeight="801.0" prefWidth="3.0" />
-      <TextField fx:id="threshold" layoutX="37.0" layoutY="178.0" promptText="Próg" />
-      <Button fx:id="binarizeBtn" layoutX="37.0" layoutY="225.0" mnemonicParsing="false" onAction="#thresholdBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja progowa" />
-      <Button fx:id="binarizeOtsuBtn" layoutX="37.0" layoutY="266.0" mnemonicParsing="false" onAction="#otsuBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Otsu (globalna)" />
-      <Button fx:id="binarizeBHTBtn" layoutX="37.0" layoutY="306.0" mnemonicParsing="false" onAction="#bhtBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja BHT (globalna)" />
+      <TextField fx:id="threshold" layoutX="37.0" layoutY="155.0" promptText="Próg" />
+      <Button fx:id="binarizeBtn1" layoutX="37.0" layoutY="191.0" mnemonicParsing="false" onAction="#thresholdBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja progowa" />
+      <Button fx:id="binarizeBtn2" layoutX="37.0" layoutY="216.0" mnemonicParsing="false" onAction="#thresholdBinarization2" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja progowa 2" />
+      <Button fx:id="binarizeOtsuBtn" layoutX="37.0" layoutY="241.0" mnemonicParsing="false" onAction="#otsuBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Otsu (globalna)" />
+      <Button fx:id="binarizeBernsenBtn" layoutX="37.0" layoutY="291.0" mnemonicParsing="false" onAction="#bernsenBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Bernsen" />
+      <Button fx:id="binarizeBHTBtn" layoutX="37.0" layoutY="266.0" mnemonicParsing="false" onAction="#bhtBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja BHT (globalna)" />
       <Button fx:id="equalizationBtn" layoutX="37.0" layoutY="346.0" mnemonicParsing="false" onAction="#histogramEquation" prefHeight="25.0" prefWidth="149.0" text="Wyrównanie histogramu" />
       <Button fx:id="dilationBtn" layoutX="37.0" layoutY="386.0" mnemonicParsing="false" onAction="#dilation" prefHeight="25.0" prefWidth="149.0" text="Dylacja" />
       <Button fx:id="erosionBtn" layoutX="37.0" layoutY="426.0" mnemonicParsing="false" onAction="#erosion" prefHeight="25.0" prefWidth="149.0" text="Erozja" />
