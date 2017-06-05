@@ -2,34 +2,37 @@ package image_processing;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class Bernsen {
-   
+public class MeanMedianBinarization {
     
-    public BufferedImage binarize1(BufferedImage bi, int x) throws RuntimeException {
+    public BufferedImage meanBinarize1(BufferedImage bi, int x) throws RuntimeException {
         if(x % 2 == 0)
             throw new RuntimeException("x is even!");
         int n = (x - 1) / 2;
         Color[][] newColors = new Color[bi.getWidth()][bi.getHeight()];
         for (int i = 0; i < bi.getHeight(); i++) {
             for (int j = 0; j < bi.getWidth(); j++) {
-                int max = 0;
-                int min = 255;
+                int countPixels = 0;
+                int sumRed = 0;
+                int sumGreen = 0;
+                int sumBlue = 0;
                 for(int ii = i - n; ii <= i + n; ii++) {
                     if(ii < 0 || ii >= bi.getHeight())
                         continue;
                     for(int jj = j - n; jj <= j + n; jj++) {
                         if(jj < 0 || jj >= bi.getWidth())
                             continue;
+                        countPixels++;
                         Color c = new Color(bi.getRGB(jj, ii));
-                        int col = (c.getRed() + c.getGreen() + c.getBlue()) / 3;
-                        if(col > max)
-                            max = col;
-                        if(col < min)
-                            min = col;
+                        sumRed += c.getRed();
+                        sumGreen += c.getGreen();
+                        sumBlue += c.getBlue();
                     }
                 }
-                int threshold = (max + min) / 2;
+                int threshold = (sumRed / countPixels + sumGreen / countPixels + sumBlue / countPixels) / 3;
                 Color color = new Color(bi.getRGB(j, i));
                 Color newColor;
                 if((color.getRed() + color.getGreen() + color.getBlue()) / 3 < threshold)
@@ -47,30 +50,31 @@ public class Bernsen {
         return bi;
     }
     
-    public BufferedImage binarize2(BufferedImage bi, int x) throws RuntimeException {
+    public BufferedImage meanBinarize2(BufferedImage bi, int x) throws RuntimeException {
         if(x % 2 == 0)
             throw new RuntimeException("x is even!");
         int n = (x - 1) / 2;
         Color[][] newColors = new Color[bi.getWidth()][bi.getHeight()];
         for (int i = 0; i < bi.getHeight(); i++) {
             for (int j = 0; j < bi.getWidth(); j++) {
-                int max = 0;
-                int min = 255;
+                int countPixels = 0;
+                int sumRed = 0;
+                int sumGreen = 0;
+                int sumBlue = 0;
                 for(int ii = i - n; ii <= i + n; ii++) {
                     if(ii < 0 || ii >= bi.getHeight())
                         continue;
                     for(int jj = j - n; jj <= j + n; jj++) {
                         if(jj < 0 || jj >= bi.getWidth())
                             continue;
+                        countPixels++;
                         Color c = new Color(bi.getRGB(jj, ii));
-                        int col = (c.getRed() + c.getGreen() + c.getBlue()) / 3;
-                        if(col > max)
-                            max = col;
-                        if(col < min)
-                            min = col;
+                        sumRed += c.getRed();
+                        sumGreen += c.getGreen();
+                        sumBlue += c.getBlue();
                     }
                 }
-                int threshold = (max + min) / 2;
+                int threshold = (sumRed / countPixels + sumGreen / countPixels + sumBlue / countPixels) / 3;
                 Color color = new Color(bi.getRGB(j, i));
                 Color newColor;
                 if(color.getRed() < threshold || color.getGreen() < threshold || color.getBlue() < threshold)
@@ -88,15 +92,16 @@ public class Bernsen {
         return bi;
     }
     
-    public BufferedImage binarize1(BufferedImage bi, int x, int gThreshold, int epsilon) throws RuntimeException {
+    public BufferedImage medianBinarize1(BufferedImage bi, int x) throws RuntimeException {
         if(x % 2 == 0)
             throw new RuntimeException("x is even!");
         int n = (x - 1) / 2;
         Color[][] newColors = new Color[bi.getWidth()][bi.getHeight()];
         for (int i = 0; i < bi.getHeight(); i++) {
             for (int j = 0; j < bi.getWidth(); j++) {
-                int max = 0;
-                int min = 255;
+                List<Integer> reds = new ArrayList<>();
+                List<Integer> greens = new ArrayList<>();
+                List<Integer> blues = new ArrayList<>();
                 for(int ii = i - n; ii <= i + n; ii++) {
                     if(ii < 0 || ii >= bi.getHeight())
                         continue;
@@ -104,18 +109,36 @@ public class Bernsen {
                         if(jj < 0 || jj >= bi.getWidth())
                             continue;
                         Color c = new Color(bi.getRGB(jj, ii));
-                        int col = (c.getRed() + c.getGreen() + c.getBlue()) / 3;
-                        if(col > max)
-                            max = col;
-                        if(col < min)
-                            min = col;
+                        reds.add(c.getRed());
+                        greens.add(c.getGreen());
+                        blues.add(c.getBlue());
                     }
                 }
-                int threshold;
-                if(max - min > epsilon)
-                    threshold = (max + min) / 2;
-                else
-                    threshold = gThreshold;
+                Collections.sort(reds);
+                Collections.sort(greens);
+                Collections.sort(blues);
+                int medianReds;
+                int medianGreens;
+                int medianBlues;
+                if(reds.size() % 2 == 1) {
+                    medianReds = reds.get(reds.size() / 2);
+                }
+                else {
+                    medianReds = (reds.get(reds.size() / 2 - 1) + reds.get(reds.size() / 2)) / 2;
+                }
+                if(greens.size() % 2 == 1) {
+                    medianGreens = greens.get(greens.size() / 2);
+                }
+                else {
+                    medianGreens = (greens.get(greens.size() / 2 - 1) + greens.get(greens.size() / 2)) / 2;
+                }
+                if(blues.size() % 2 == 1) {
+                    medianBlues = blues.get(blues.size() / 2);
+                }
+                else {
+                    medianBlues = (blues.get(blues.size() / 2 - 1) + blues.get(blues.size() / 2)) / 2;
+                }
+                int threshold = (medianReds + medianGreens + medianBlues) / 3;
                 Color color = new Color(bi.getRGB(j, i));
                 Color newColor;
                 if((color.getRed() + color.getGreen() + color.getBlue()) / 3 < threshold)
@@ -133,15 +156,16 @@ public class Bernsen {
         return bi;
     }
     
-    public BufferedImage binarize2(BufferedImage bi, int x, int gThreshold, int epsilon) throws RuntimeException {
+    public BufferedImage medianBinarize2(BufferedImage bi, int x) throws RuntimeException {
         if(x % 2 == 0)
             throw new RuntimeException("x is even!");
         int n = (x - 1) / 2;
         Color[][] newColors = new Color[bi.getWidth()][bi.getHeight()];
         for (int i = 0; i < bi.getHeight(); i++) {
             for (int j = 0; j < bi.getWidth(); j++) {
-                int max = 0;
-                int min = 255;
+                List<Integer> reds = new ArrayList<>();
+                List<Integer> greens = new ArrayList<>();
+                List<Integer> blues = new ArrayList<>();
                 for(int ii = i - n; ii <= i + n; ii++) {
                     if(ii < 0 || ii >= bi.getHeight())
                         continue;
@@ -149,18 +173,36 @@ public class Bernsen {
                         if(jj < 0 || jj >= bi.getWidth())
                             continue;
                         Color c = new Color(bi.getRGB(jj, ii));
-                        int col = (c.getRed() + c.getGreen() + c.getBlue()) / 3;
-                        if(col > max)
-                            max = col;
-                        if(col < min)
-                            min = col;
+                        reds.add(c.getRed());
+                        greens.add(c.getGreen());
+                        blues.add(c.getBlue());
                     }
                 }
-                int threshold;
-                if(max - min > epsilon)
-                    threshold = (max + min) / 2;
-                else
-                    threshold = gThreshold;
+                Collections.sort(reds);
+                Collections.sort(greens);
+                Collections.sort(blues);
+                int medianReds;
+                int medianGreens;
+                int medianBlues;
+                if(reds.size() % 2 == 1) {
+                    medianReds = reds.get(reds.size() / 2);
+                }
+                else {
+                    medianReds = (reds.get(reds.size() / 2 - 1) + reds.get(reds.size() / 2)) / 2;
+                }
+                if(greens.size() % 2 == 1) {
+                    medianGreens = greens.get(greens.size() / 2);
+                }
+                else {
+                    medianGreens = (greens.get(greens.size() / 2 - 1) + greens.get(greens.size() / 2)) / 2;
+                }
+                if(blues.size() % 2 == 1) {
+                    medianBlues = blues.get(blues.size() / 2);
+                }
+                else {
+                    medianBlues = (blues.get(blues.size() / 2 - 1) + blues.get(blues.size() / 2)) / 2;
+                }
+                int threshold = (medianReds + medianGreens + medianBlues) / 3;
                 Color color = new Color(bi.getRGB(j, i));
                 Color newColor;
                 if(color.getRed() < threshold || color.getGreen() < threshold || color.getBlue() < threshold)

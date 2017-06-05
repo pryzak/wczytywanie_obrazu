@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 
 public class DivideImage {
     
-    
     public BufferedImage[][] divide(BufferedImage bi, int side) {
         int nHorizontal = bi.getWidth() / side;
         if(nHorizontal * side < bi.getWidth())
@@ -19,10 +18,16 @@ public class DivideImage {
         int restVertical = bi.getHeight()- ((bi.getHeight() / side) * side);     
         for(int i = 0; i < nHorizontal - 1; i++)
             horizontalSides[i] = side;
-        horizontalSides[nHorizontal - 1] = restHorizontal;
+        if(restHorizontal > 0)
+            horizontalSides[nHorizontal - 1] = restHorizontal;
+        else
+            horizontalSides[nHorizontal - 1] = side;
         for(int i = 0; i < nVertical - 1; i++)
             verticalSides[i] = side;
-        verticalSides[nVertical - 1] = restVertical;
+        if(restVertical > 0)
+            verticalSides[nVertical - 1] = restVertical;
+        else
+            verticalSides[nVertical - 1] = side;
         BufferedImage[][] bis = new BufferedImage[nVertical][nHorizontal];
         int biType = bi.getType();
         for(int i = 0; i < nVertical; i++) {

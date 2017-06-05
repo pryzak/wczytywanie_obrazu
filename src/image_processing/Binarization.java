@@ -10,6 +10,7 @@ public class Binarization {
     private Otsu ot;
     private BHT bht;
     private Bernsen bernsen;
+    private MeanMedianBinarization mmb;
     
     public BufferedImage binarize(BufferedImage bi, int threshold) {
         for (int i = 0; i < bi.getHeight(); i++) {
@@ -119,6 +120,28 @@ public class Binarization {
         int threshold = (int) bht.findThreshold3(grayScaleArray);
         System.out.println(threshold);
         bi = binarize(bi, threshold);
+        return bi;
+    }
+    
+    public BufferedImage meanBinarize1(BufferedImage bi, int side) {
+        if(mmb == null)
+            mmb = new MeanMedianBinarization();
+        if(gs == null)
+            gs = new GrayScale();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        bi = mmb.meanBinarize1(bi, side);
+        return bi;
+    }
+    
+    public BufferedImage medianBinarize1(BufferedImage bi, int side) {
+        if(mmb == null)
+            mmb = new MeanMedianBinarization();
+        if(gs == null)
+            gs = new GrayScale();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        bi = mmb.medianBinarize1(bi, side);
         return bi;
     }
     

@@ -29,10 +29,11 @@
       <Button fx:id="binarizeBernsenBtn" layoutX="37.0" layoutY="291.0" mnemonicParsing="false" onAction="#bernsenBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Bernsen" />
       <Button fx:id="binarizeBHTBtn" layoutX="37.0" layoutY="266.0" mnemonicParsing="false" onAction="#bhtBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja BHT (globalna)" />
       <Button fx:id="equalizationBtn" layoutX="37.0" layoutY="346.0" mnemonicParsing="false" onAction="#histogramEquation" prefHeight="25.0" prefWidth="149.0" text="Wyrównanie histogramu" />
-      <Button fx:id="dilationBtn" layoutX="37.0" layoutY="386.0" mnemonicParsing="false" onAction="#dilation" prefHeight="25.0" prefWidth="149.0" text="Dylacja" />
+      <Button fx:id="dilationBtn" layoutX="37.0" layoutY="401.0" mnemonicParsing="false" onAction="#dilation" prefHeight="25.0" prefWidth="149.0" text="Dylacja" />
       <Button fx:id="erosionBtn" layoutX="37.0" layoutY="426.0" mnemonicParsing="false" onAction="#erosion" prefHeight="25.0" prefWidth="149.0" text="Erozja" />
-      <Button fx:id="openingBtn" layoutX="37.0" layoutY="466.0" mnemonicParsing="false" onAction="#opening" prefHeight="25.0" prefWidth="149.0" text="Otwarcie" />
-      <Button fx:id="closingBtn" layoutX="37.0" layoutY="506.0" mnemonicParsing="false" onAction="#closing" prefHeight="25.0" prefWidth="149.0" text="Zamknięcie" />
+      <Button fx:id="openingBtn" layoutX="37.0" layoutY="451.0" mnemonicParsing="false" onAction="#opening" prefHeight="25.0" prefWidth="149.0" text="Otwarcie" />
+      <Button fx:id="closingBtn" layoutX="37.0" layoutY="476.0" mnemonicParsing="false" onAction="#closing" prefHeight="25.0" prefWidth="149.0" text="Zamknięcie" />
+      <Button fx:id="hitOrMissBtn" layoutX="37.0" layoutY="501.0" mnemonicParsing="false" onAction="#hitOrMiss" prefHeight="25.0" prefWidth="149.0" text="Hit Or Miss" />
       <Button fx:id="lowPass1" layoutX="37.0" layoutY="688.0" mnemonicParsing="false" onAction="#lowPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr dolnoprzepustowy" />
       <Button fx:id="highPass1" layoutX="37.0" layoutY="723.0" mnemonicParsing="false" onAction="#highPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr górnoprzepustowy" />
       <Button fx:id="binarizeBHTBtn2" layoutX="37.0" layoutY="809.0" mnemonicParsing="false" onAction="#bhtBinarization2" prefHeight="25.0" prefWidth="149.0" text="BHT2" />

@@ -1,6 +1,7 @@
 package gui;
 
 import image_processing.Binarization;
+import image_processing.DivideImage;
 import image_processing.Filters;
 import image_processing.GrayScale;
 import image_processing.HistogramEqualization;
@@ -52,6 +53,7 @@ public class FXMLDocumentController implements Initializable {
     private HistogramEqualization histogramEquation;
     private Morphology morphology;
     private Filters filters;
+    private DivideImage di;
 
     @FXML
     private void chooseFile(ActionEvent event) {
@@ -125,6 +127,28 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    private void otsuBinarizationLocal(ActionEvent event) {
+        if(binarization == null)
+            binarization = new Binarization();
+        if(di == null)
+            di = new DivideImage();
+        int side;
+        if(bi.getWidth() > bi.getHeight())
+            side = bi.getWidth() /4;
+        else
+            side = bi.getHeight() / 4;
+        BufferedImage[][] bis = di.divide(bi, side);
+        BufferedImage[][] bis2 = new BufferedImage[bis.length][bis[0].length];
+        for(int i = 0; i < bis.length; i++) {
+            for(int j = 0; j < bis[i].length; j++) {
+                bis2[i][j] = binarization.otsuBinarize(bis[i][j]);
+            }
+        }
+        bi = di.merge(bis2);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
     private void bhtBinarization(ActionEvent event) {
         if(binarization == null)
             binarization = new Binarization();
@@ -150,8 +174,8 @@ public class FXMLDocumentController implements Initializable {
     private void bernsenBinarization(ActionEvent event) {
         if(binarization == null)
             binarization = new Binarization();
-//        bi = binarization.bernsenBinarize(bi, Integer.parseInt(maskSide.getText()));
-        bi = binarization.bernsenBinarize2(bi, Integer.parseInt(maskSide.getText()), 100, 15);
+        bi = binarization.bernsenBinarize(bi, Integer.parseInt(maskSide.getText()));
+//        bi = binarization.bernsenBinarize2(bi, Integer.parseInt(maskSide.getText()), 100, 15);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
@@ -194,6 +218,15 @@ public class FXMLDocumentController implements Initializable {
             morphology = new Morphology();
         bi = morphology.dilation(bi, new SE(new int[][] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 1, 1));
         bi = morphology.erosion(bi, new SE(new int[][] { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } }, 1, 1));
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
+    private void hitOrMiss(ActionEvent event) {
+        if(morphology == null)
+            morphology = new Morphology();
+        //TODO wybor maski w GUI
+        bi = morphology.hitOrMiss(bi, new SE(new int[][] { { -1, 0, 0 }, { 1, 1, 0 }, { -1, 1, -1 } }, 1, 1));
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     

@@ -2,7 +2,7 @@ package image_processing;
 
 public class SE {
     
-    private int[][] mask;
+    private int[][] mask; //1, 0 lub -1 (piksel nieokreslony)
     private int xOrigin;
     private int yOrigin;
     
