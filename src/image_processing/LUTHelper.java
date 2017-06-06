@@ -18,4 +18,21 @@ public class LUTHelper {
         return bi;
     }
     
+    public BufferedImage processLUT(BufferedImage bi, int[][] LUT) {
+        for (int i = 0; i < bi.getHeight(); i++) {
+            for (int j = 0; j < bi.getWidth(); j++) {
+                Color c = new Color(bi.getRGB(j, i));
+                int red = c.getRed();
+                int newRed = LUT[0][red];
+                int green = c.getGreen();
+                int newGreen = LUT[0][green];
+                int blue = c.getBlue();
+                int newBlue = LUT[0][blue];
+                Color newColor = new Color(newRed, newGreen, newBlue);
+                bi.setRGB(j,i,newColor.getRGB());
+            }
+        }
+        return bi;
+    }
+    
 }
