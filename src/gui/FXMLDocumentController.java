@@ -184,7 +184,7 @@ public class FXMLDocumentController implements Initializable {
     private void whiteRohrerBinarization(ActionEvent event) {
         if(binarization == null)
             binarization = new Binarization();
-        bi = binarization.whiteRohrerBinarize(bi, 23, 1.2);
+        bi = binarization.whiteRohrerBinarize(bi, 23, 2.0);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     

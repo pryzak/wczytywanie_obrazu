@@ -10,19 +10,21 @@ public class WhiteRohrer {
             throw new RuntimeException("k must be greater than or equal to 1!");
         if(x % 2 == 0)
             throw new RuntimeException("x is even!");
-        for (int i = 0; i < bi.getHeight(); i++) {
-            for (int j = 0; j < bi.getWidth(); j++) {
-                Color c = new Color(bi.getRGB(j, i));
-                if(c.getRed() != c.getGreen() || c.getRed() != c.getBlue() || c.getGreen() != c.getBlue())
-                    throw new RuntimeException("Image is not grayScale!");
-            }
-        }
+//        for (int i = 0; i < bi.getHeight(); i++) {
+//            for (int j = 0; j < bi.getWidth(); j++) {
+//                Color c = new Color(bi.getRGB(j, i));
+//                if(c.getRed() != c.getGreen() || c.getRed() != c.getBlue() || c.getGreen() != c.getBlue())
+//                    throw new RuntimeException("Image is not grayScale!");
+//            }
+//        }
         int n = (x - 1) / 2;
         Color[][] newColors = new Color[bi.getWidth()][bi.getHeight()];
         for (int i = 0; i < bi.getHeight(); i++) {
             for (int j = 0; j < bi.getWidth(); j++) {
                 int countPixels = 0;
-                int sum = 0;
+                int sumRed = 0;
+                int sumGreen = 0;
+                int sumBlue = 0;
                 for(int ii = i - n; ii <= i + n; ii++) {
                     if(ii < 0 || ii >= bi.getHeight())
                         continue;
@@ -31,10 +33,13 @@ public class WhiteRohrer {
                             continue;
                         countPixels++;
                         Color c = new Color(bi.getRGB(jj, ii));
-                        sum += c.getRed();
+                        sumRed += c.getRed();
+                        sumGreen += c.getGreen();
+                        sumBlue += c.getBlue();
                     }
                 }
-                int threshold = (int) (((double) sum / (double) countPixels) / k);
+                double mean = ((double)sumRed / (double)countPixels + (double)sumGreen / (double)countPixels + (double)sumBlue / (double)countPixels) / (double)3;
+                int threshold = (int) (mean / k);
                 Color color = new Color(bi.getRGB(j, i));
                 Color newColor;
                 if((color.getRed() + color.getGreen() + color.getBlue()) / 3 < threshold)
