@@ -3,7 +3,7 @@ package utils;
 
 public class StandardDeviation {
     
-    double getStd(int[] matrix) {
+    public double getStd(int[] matrix) {
         int sum = 0;
         for(int i = 0; i < matrix.length; i++)
             sum += matrix[i];
@@ -19,4 +19,5 @@ public class StandardDeviation {
         double variance = sum2 / (double) deviations.length;
         return Math.sqrt(variance);
     }
+    
 }
