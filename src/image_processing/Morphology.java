@@ -2,6 +2,10 @@ package image_processing;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
+import utils.CloneImage;
+import utils.RotateMatrix;
 
 public class Morphology {
     
@@ -148,4 +152,76 @@ public class Morphology {
         }
         return bi;
     }
+    
+    public BufferedImage thinning(BufferedImage bi, SE se) {
+        CloneImage ci = new CloneImage();
+        BufferedImage hom = ci.deepCopy(bi);
+        hom = hitOrMiss(hom, se);
+        BufferedImage result = substract(bi, hom);
+        return result;
+    }
+    
+    public BufferedImage substract(BufferedImage a, BufferedImage b) {
+        BufferedImage result = new CloneImage().deepCopy(a);
+        for(int i = 0; i < a.getHeight(); i++) {
+            for (int j = 0; j < a.getWidth(); j++) {
+                Color cHom = new Color(b.getRGB(j, i));
+                Color cA = new Color(a.getRGB(j, i));
+                if(cHom.getRed() == 0 && cA.getRed() == 0) {
+                    result.setRGB(j, i, new Color(255, 255, 255).getRGB());
+                }
+            }
+        }
+        return result;
+    }
+    
+    
+    
+    public BufferedImage skeletonization(BufferedImage bi) {
+        RotateMatrix rm = new RotateMatrix();
+        int[][] se11 = new int[][] {{0, 0, 0}, {-1, 1, -1}, {1, 1, 1}};
+        int[][] se12 = rm.rotate90(se11);
+        int[][] se13 = rm.rotate90(se12);
+        int[][] se14 = rm.rotate90(se13);
+        int[][] se21 = new int[][] {{-1, 0, 0}, {1, 1, 0}, {-1, 1, -1}};
+        int[][] se22 = rm.rotate90(se21);
+        int[][] se23 = rm.rotate90(se22);
+        int[][] se24 = rm.rotate90(se23);
+        SE se11_ = new SE(se11, 1, 1);
+        SE se12_ = new SE(se12, 1, 1);
+        SE se13_ = new SE(se13, 1, 1);
+        SE se14_ = new SE(se14, 1, 1);
+        SE se21_ = new SE(se21, 1, 1);
+        SE se22_ = new SE(se22, 1, 1);
+        SE se23_ = new SE(se23, 1, 1);
+        SE se24_ = new SE(se24, 1, 1);
+        BufferedImage prev = new CloneImage().deepCopy(bi);
+        BufferedImage result = new CloneImage().deepCopy(bi);
+        while(true) {
+            result = thinning(result, se11_);
+            result = thinning(result, se12_);
+            result = thinning(result, se13_);
+            result = thinning(result, se14_);
+            result = thinning(result, se21_);
+            result = thinning(result, se22_);
+            result = thinning(result, se23_);
+            result = thinning(result, se24_);
+            if(compare(prev, result))
+                return result;
+            prev = new CloneImage().deepCopy(result);
+        }
+    }
+    
+    public boolean compare(BufferedImage a, BufferedImage b) {
+        if(a.getHeight() != b.getHeight() || a.getWidth() != b.getWidth() || a.getType() != b.getType())
+            throw new RuntimeException("Can't compare!");
+        for (int i = 0; i < a.getHeight(); i++) {
+            for (int j = 0; j < a.getWidth(); j++) {
+                if(a.getRGB(j, i) != b.getRGB(j, i))
+                    return false;
+            }
+        }
+        return true;
+    }
+    
 }

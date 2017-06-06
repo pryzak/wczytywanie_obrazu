@@ -6,6 +6,7 @@ import image_processing.Filters;
 import image_processing.GrayScale;
 import image_processing.HistogramEqualization;
 import image_processing.Morphology;
+import image_processing.Negative;
 import image_processing.SE;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -188,6 +189,12 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    private void negative(ActionEvent event) {
+        bi = new Negative().negate(bi);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
     private void dilation(ActionEvent event) {
         if(morphology == null)
             morphology = new Morphology();
@@ -227,6 +234,14 @@ public class FXMLDocumentController implements Initializable {
             morphology = new Morphology();
         //TODO wybor maski w GUI
         bi = morphology.hitOrMiss(bi, new SE(new int[][] { { -1, 0, 0 }, { 1, 1, 0 }, { -1, 1, -1 } }, 1, 1));
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
+    private void skeletonization(ActionEvent event) {
+        if(morphology == null)
+            morphology = new Morphology();
+        bi = morphology.skeletonization(bi);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
