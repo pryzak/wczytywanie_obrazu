@@ -23,14 +23,15 @@
       <Separator layoutX="43.0" layoutY="65.0" prefHeight="0.0" prefWidth="1200.0" />
       <Separator layoutX="194.0" layoutY="76.0" orientation="VERTICAL" prefHeight="801.0" prefWidth="3.0" />
       <TextField fx:id="threshold" layoutX="37.0" layoutY="138.0" promptText="Próg" />
-      <Button fx:id="binarizeBtn1" layoutX="37.0" layoutY="178.0" mnemonicParsing="false" onAction="#thresholdBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja progowa" />
-      <Button fx:id="binarizeBtn2" layoutX="37.0" layoutY="203.0" mnemonicParsing="false" onAction="#thresholdBinarization2" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja progowa 2" />
-      <Button fx:id="binarizeOtsuBtn" layoutX="37.0" layoutY="228.0" mnemonicParsing="false" onAction="#otsuBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Otsu (globalna)" />
-      <Button fx:id="binarizeBernsenBtn" layoutX="37.0" layoutY="278.0" mnemonicParsing="false" onAction="#bernsenBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Bernsen" />
-      <Button fx:id="binarizeWhiteRohrerBtn" layoutX="37.0" layoutY="303.0" mnemonicParsing="false" onAction="#whiteRohrerBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja White Rohrer" />
-      <Button fx:id="binarizeNiblackBtn" layoutX="37.0" layoutY="328.0" mnemonicParsing="false" onAction="#niblackBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Niblack" />
-      <Button fx:id="binarizeBHTBtn" layoutX="37.0" layoutY="253.0" mnemonicParsing="false" onAction="#bhtBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja BHT (globalna)" />
-      <Button fx:id="equalizationBtn" layoutX="37.0" layoutY="375.0" mnemonicParsing="false" onAction="#histogramEquation" prefHeight="25.0" prefWidth="149.0" text="Wyrównanie histogramu" />
+      <Button fx:id="binarizeBtn1" layoutX="37.0" layoutY="170.0" mnemonicParsing="false" onAction="#thresholdBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja progowa" />
+      <Button fx:id="binarizeBtn2" layoutX="37.0" layoutY="195.0" mnemonicParsing="false" onAction="#thresholdBinarization2" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja progowa 2" />
+      <Button fx:id="binarizeOtsuBtn" layoutX="37.0" layoutY="220.0" mnemonicParsing="false" onAction="#otsuBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Otsu (globalna)" />
+      <Button fx:id="binarizeBernsenBtn" layoutX="37.0" layoutY="270.0" mnemonicParsing="false" onAction="#bernsenBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Bernsen" />
+      <Button fx:id="binarizeWhiteRohrerBtn" layoutX="37.0" layoutY="295.0" mnemonicParsing="false" onAction="#whiteRohrerBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja White Rohrer" />
+      <Button fx:id="binarizeNiblackBtn" layoutX="37.0" layoutY="320.0" mnemonicParsing="false" onAction="#niblackBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Niblack" />
+      <Button fx:id="binarizeSauvolaBtn" layoutX="37.0" layoutY="345.0" mnemonicParsing="false" onAction="#sauvolaBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Sauvola" />
+      <Button fx:id="binarizeBHTBtn" layoutX="37.0" layoutY="245.0" mnemonicParsing="false" onAction="#bhtBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja BHT (globalna)" />
+      <Button fx:id="equalizationBtn" layoutX="37.0" layoutY="379.0" mnemonicParsing="false" onAction="#histogramEquation" prefHeight="25.0" prefWidth="149.0" text="Wyrównanie histogramu" />
       <Button fx:id="dilationBtn" layoutX="37.0" layoutY="414.0" mnemonicParsing="false" onAction="#dilation" prefHeight="25.0" prefWidth="149.0" text="Dylacja" />
       <Button fx:id="erosionBtn" layoutX="37.0" layoutY="439.0" mnemonicParsing="false" onAction="#erosion" prefHeight="25.0" prefWidth="149.0" text="Erozja" />
       <Button fx:id="openingBtn" layoutX="37.0" layoutY="464.0" mnemonicParsing="false" onAction="#opening" prefHeight="25.0" prefWidth="149.0" text="Otwarcie" />

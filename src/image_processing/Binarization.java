@@ -13,6 +13,7 @@ public class Binarization {
     private MeanMedianBinarization mmb;
     private WhiteRohrer wr;
     private Niblack niblack;
+    private Sauvola sauvola;
     
     public BufferedImage binarize(BufferedImage bi, int threshold) {
         for (int i = 0; i < bi.getHeight(); i++) {
@@ -109,6 +110,17 @@ public class Binarization {
 //        bi = gs.grayScaleAvg(bi);
         bi = gs.grayScaleYUV(bi);
         bi = niblack.binarize(bi, side, k);
+        return bi;
+    }
+    
+    public BufferedImage sauvolaBinarize(BufferedImage bi, int side, double k, int r) {
+        if(sauvola == null)
+            sauvola = new Sauvola();
+        if(gs == null)
+            gs = new GrayScale();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        bi = sauvola.binarize(bi, side, k, r);
         return bi;
     }
     
