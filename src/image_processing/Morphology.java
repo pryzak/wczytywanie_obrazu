@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import utils.CloneImage;
+import utils.CompareImages;
 import utils.RotateMatrix;
 
 public class Morphology {
@@ -197,6 +198,7 @@ public class Morphology {
         SE se24_ = new SE(se24, 1, 1);
         BufferedImage prev = new CloneImage().deepCopy(bi);
         BufferedImage result = new CloneImage().deepCopy(bi);
+        CompareImages ci = new CompareImages();
         while(true) {
             result = thinning(result, se11_);
             result = thinning(result, se12_);
@@ -206,22 +208,10 @@ public class Morphology {
             result = thinning(result, se22_);
             result = thinning(result, se23_);
             result = thinning(result, se24_);
-            if(compare(prev, result))
+            if(ci.compareEqual(prev, result))
                 return result;
             prev = new CloneImage().deepCopy(result);
         }
-    }
-    
-    public boolean compare(BufferedImage a, BufferedImage b) {
-        if(a.getHeight() != b.getHeight() || a.getWidth() != b.getWidth() || a.getType() != b.getType())
-            throw new RuntimeException("Can't compare!");
-        for (int i = 0; i < a.getHeight(); i++) {
-            for (int j = 0; j < a.getWidth(); j++) {
-                if(a.getRGB(j, i) != b.getRGB(j, i))
-                    return false;
-            }
-        }
-        return true;
     }
     
 }
