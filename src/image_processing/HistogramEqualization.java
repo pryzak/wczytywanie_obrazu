@@ -1,12 +1,14 @@
 package image_processing;
 
 import java.awt.image.BufferedImage;
+import utils.ImageToArray;
 
 public class HistogramEqualization {
     
     private HistogramHelper hh;
     private GrayScale gs;
     private LUTHelper lutHelper;
+    private ImageToArray ita;
     
     public BufferedImage histogramEquation(BufferedImage bi) {
         if(hh == null)
@@ -15,10 +17,12 @@ public class HistogramEqualization {
             gs = new GrayScale();
         if(lutHelper == null)
             lutHelper = new LUTHelper();
+        if(ita == null)
+            ita = new ImageToArray();
 //        bi = gs.grayScaleAvg(bi);
 //        int[] grayScale = gs.convertToArray(bi);
 //        int[] histogram = hh.getHistogram(grayScale);
-        int[][] rgbScale = gs.convertToArrayRGB(bi);
+        int[][] rgbScale = ita.convertToArrayRGB(bi);
         int[] histogramR = hh.getHistogram(rgbScale[0]);
         int[] histogramG = hh.getHistogram(rgbScale[1]);
         int[] histogramB = hh.getHistogram(rgbScale[2]);

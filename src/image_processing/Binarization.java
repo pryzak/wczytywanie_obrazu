@@ -2,6 +2,7 @@ package image_processing;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import utils.ImageToArray;
 
 public class Binarization {
     
@@ -14,6 +15,7 @@ public class Binarization {
     private WhiteRohrer wr;
     private Niblack niblack;
     private Sauvola sauvola;
+    private ImageToArray ita;
     
     public BufferedImage binarize(BufferedImage bi, int threshold) {
         for (int i = 0; i < bi.getHeight(); i++) {
@@ -60,10 +62,11 @@ public class Binarization {
             gs = new GrayScale();
 //        ot = new OtsuThresholding();
         ot = new Otsu();
-        
+        if(ita == null)
+            ita = new ImageToArray();
 //        bi = gs.grayScaleAvg(bi);
         bi = gs.grayScaleYUV(bi);
-        int[] grayScaleArray = gs.convertToArray(bi);
+        int[] grayScaleArray = ita.convertToArrayGray(bi);
         int threshold = (int) ot.getOtsuThreshold(grayScaleArray);
         System.out.println(threshold);
         bi = binarize(bi, threshold);
@@ -129,7 +132,9 @@ public class Binarization {
             gs = new GrayScale();
         bht = new BHT();
         bi = gs.grayScaleYUV(bi);
-        int[] grayScaleArray = gs.convertToArray(bi);
+        if(ita == null)
+            ita = new ImageToArray();
+        int[] grayScaleArray = ita.convertToArrayGray(bi);
         int threshold = (int) bht.findThreshold(grayScaleArray);
         System.out.println(threshold);
         bi = binarize(bi, threshold);
@@ -140,7 +145,9 @@ public class Binarization {
             gs = new GrayScale();
         bht = new BHT();
         bi = gs.grayScaleYUV(bi);
-        int[] grayScaleArray = gs.convertToArray(bi);
+        if(ita == null)
+            ita = new ImageToArray();
+        int[] grayScaleArray = ita.convertToArrayGray(bi);
         int threshold = (int) bht.findThreshold2(grayScaleArray);
         System.out.println(threshold);
         bi = binarize(bi, threshold);
@@ -151,7 +158,9 @@ public class Binarization {
             gs = new GrayScale();
         bht = new BHT();
         bi = gs.grayScaleYUV(bi);
-        int[] grayScaleArray = gs.convertToArray(bi);
+        if(ita == null)
+            ita = new ImageToArray();
+        int[] grayScaleArray = ita.convertToArrayGray(bi);
         int threshold = (int) bht.findThreshold3(grayScaleArray);
         System.out.println(threshold);
         bi = binarize(bi, threshold);
