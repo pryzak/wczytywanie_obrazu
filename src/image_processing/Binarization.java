@@ -11,6 +11,7 @@ public class Binarization {
     private BHT bht;
     private Bernsen bernsen;
     private MeanMedianBinarization mmb;
+    private WhiteRohrer wr;
     
     public BufferedImage binarize(BufferedImage bi, int threshold) {
         for (int i = 0; i < bi.getHeight(); i++) {
@@ -88,6 +89,16 @@ public class Binarization {
         return bi;
     }
     
+    public BufferedImage whiteRohrerBinarize(BufferedImage bi, int side, double k) {
+        if(wr == null)
+            wr = new WhiteRohrer();
+        if(gs == null)
+            gs = new GrayScale();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        bi = wr.binarize(bi, side, k);
+        return bi;
+    }
     
     public BufferedImage bhtBinarize(BufferedImage bi) {
         if(gs == null)
