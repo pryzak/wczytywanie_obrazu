@@ -57,21 +57,19 @@ public class BHT {
     }
     
     public int findIS(int[] histogram) {
-        int IS = 0;
         for(int i = 0; i < histogram.length; i++) {
             if(histogram[i] != 0)
-                return IS;
+                return i;
         }
-        return IS;
+        return histogram.length - 1;
     }
     
     public int findIE(int[] histogram) {
-        int IE = histogram.length - 1;
         for(int i = histogram.length - 1; i >= 0; i--) {
             if(histogram[i] != 0)
-                return IE;
+                return i;
         }
-        return IE;
+        return 0;
         
     }
     
