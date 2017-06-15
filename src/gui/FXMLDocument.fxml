@@ -46,7 +46,7 @@
                         <Button fx:id="openingBtn" layoutX="37.0" layoutY="464.0" mnemonicParsing="false" onAction="#opening" prefHeight="25.0" prefWidth="149.0" text="Otwarcie" />
                         <Button fx:id="closingBtn" layoutX="37.0" layoutY="489.0" mnemonicParsing="false" onAction="#closing" prefHeight="25.0" prefWidth="149.0" text="Zamknięcie" />
                         <Button fx:id="hitOrMissBtn" layoutX="37.0" layoutY="514.0" mnemonicParsing="false" onAction="#hitOrMiss" prefHeight="25.0" prefWidth="149.0" text="Hit Or Miss" />
-                        <Button fx:id="skeletonizationBtn" layoutX="37.0" layoutY="539.0" mnemonicParsing="false" onAction="#skeletonization" prefHeight="25.0" prefWidth="149.0" text="Szkieletyzacja" />
+                        <Button fx:id="skeletonizationBtn" layoutX="37.0" layoutY="539.0" mnemonicParsing="false" onAction="#skeletonization2" prefHeight="25.0" prefWidth="149.0" text="Szkieletyzacja" />
                         <Button fx:id="lowPass1" layoutX="37.0" layoutY="688.0" mnemonicParsing="false" onAction="#lowPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr dolnoprzepustowy" />
                         <Button fx:id="highPass1" layoutX="37.0" layoutY="723.0" mnemonicParsing="false" onAction="#highPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr górnoprzepustowy" />
                         <Button fx:id="binarizeBHTBtn2" layoutX="37.0" layoutY="809.0" mnemonicParsing="false" onAction="#bhtBinarization2" prefHeight="25.0" prefWidth="149.0" text="BHT2" />

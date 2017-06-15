@@ -5,6 +5,7 @@ import image_processing.DivideImage;
 import image_processing.Filters;
 import image_processing.GrayScale;
 import image_processing.HistogramEqualization;
+import image_processing.K3M;
 import image_processing.Morphology;
 import image_processing.Negative;
 import image_processing.SE;
@@ -55,6 +56,7 @@ public class FXMLDocumentController implements Initializable {
     private Morphology morphology;
     private Filters filters;
     private DivideImage di;
+    private K3M k3m;
 
     @FXML
     private void chooseFile(ActionEvent event) {
@@ -175,8 +177,8 @@ public class FXMLDocumentController implements Initializable {
     private void bernsenBinarization(ActionEvent event) {
         if(binarization == null)
             binarization = new Binarization();
-        bi = binarization.bernsenBinarize(bi, Integer.parseInt(maskSide.getText()));
-//        bi = binarization.bernsenBinarize2(bi, Integer.parseInt(maskSide.getText()), 100, 15);
+//        bi = binarization.bernsenBinarize(bi, Integer.parseInt(maskSide.getText()));
+        bi = binarization.bernsenBinarize2(bi, Integer.parseInt(maskSide.getText()), 100, 30);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
@@ -266,6 +268,14 @@ public class FXMLDocumentController implements Initializable {
         if(morphology == null)
             morphology = new Morphology();
         bi = morphology.skeletonization(bi);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
+    private void skeletonization2(ActionEvent event) {
+        if(k3m == null)
+            k3m = new K3M();
+        bi = k3m.skeletonization(bi);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
