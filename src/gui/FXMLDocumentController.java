@@ -275,7 +275,7 @@ public class FXMLDocumentController implements Initializable {
     private void skeletonization2(ActionEvent event) {
         if(k3m == null)
             k3m = new K3M();
-        bi = k3m.skeletonization(bi);
+        bi = k3m.skeletonization2(bi);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
