@@ -207,6 +207,14 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    private void ridlerCalvardBinarization(ActionEvent event) {
+        if(binarization == null)
+            binarization = new Binarization();
+        bi = binarization.ridlerCalvardBinarize(bi);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
     private void histogramEquation(ActionEvent event) {
         if(histogramEquation == null)
             histogramEquation = new HistogramEqualization();

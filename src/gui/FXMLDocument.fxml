@@ -54,7 +54,8 @@
                         <TextField fx:id="maskSide" layoutX="37.0" layoutY="569.0" promptText="Długość maski" />
                         <Button fx:id="meanFilter" layoutX="37.0" layoutY="604.0" mnemonicParsing="false" onAction="#meanFilter" prefHeight="25.0" prefWidth="149.0" text="Filtr średniej kroczącej" />
                         <Button fx:id="medianFilter" layoutX="37.0" layoutY="634.0" mnemonicParsing="false" onAction="#medianFilter" prefHeight="25.0" prefWidth="149.0" text="Filtr medianowy" />
-                        <Button fx:id="negateBtn" layoutX="37.0" layoutY="762.0" mnemonicParsing="false" onAction="#negative" prefHeight="25.0" prefWidth="149.0" text="Negatyw" />                     
+                        <Button fx:id="negateBtn" layoutX="37.0" layoutY="762.0" mnemonicParsing="false" onAction="#negative" prefHeight="25.0" prefWidth="149.0" text="Negatyw" />  
+                        <Button fx:id="binarizeRidlerCalvardBtn" layoutX="37.0" layoutY="859.0" mnemonicParsing="false" onAction="#ridlerCalvardBinarization" prefHeight="25.0" prefWidth="149.0" text="Ridler Calvard" />                   
                     </children>
       
                 </Pane>

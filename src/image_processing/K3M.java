@@ -198,8 +198,10 @@ public class K3M {
     private int[][] phaseLast(int[][] imgBin, int[] arrayI) {
         for (int i = 0; i < imgBin[0].length; i++) {
             for (int j = 0; j < imgBin.length; j++) {
-                if(isWeightInArray(getWeight(j, i, imgBin), arrayI)) {
-                    imgBin[j][i] = 0;
+                if(imgBin[j][i] == 1) {
+                    if(isWeightInArray(getWeight(j, i, imgBin), arrayI)) {
+                        imgBin[j][i] = 0;
+                    }
                 }
             }
         }

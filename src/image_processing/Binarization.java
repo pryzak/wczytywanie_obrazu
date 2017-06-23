@@ -16,6 +16,7 @@ public class Binarization {
     private Niblack niblack;
     private Sauvola sauvola;
     private ImageToArray ita;
+    private RidlerCalvard rc;
     
     public BufferedImage binarize(BufferedImage bi, int threshold) {
         for (int i = 0; i < bi.getHeight(); i++) {
@@ -186,6 +187,19 @@ public class Binarization {
 //        bi = gs.grayScaleAvg(bi);
         bi = gs.grayScaleYUV(bi);
         bi = mmb.medianBinarize1(bi, side);
+        return bi;
+    }
+    
+    public BufferedImage ridlerCalvardBinarize(BufferedImage bi) {
+        if(rc == null)
+            rc = new RidlerCalvard();
+        if(gs == null)
+            gs = new GrayScale();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        int threshold = (int) rc.getThreshold(bi);
+        System.out.println(threshold);
+        bi = binarize(bi, threshold);
         return bi;
     }
     
