@@ -8,7 +8,7 @@ public class Binarization {
     
     private GrayScale gs;
 //    private OtsuThresholding ot;
-    private Otsu ot;
+    private Otsu otsu;
     private BHT bht;
     private Bernsen bernsen;
     private MeanMedianBinarization mmb;
@@ -17,6 +17,9 @@ public class Binarization {
     private Sauvola sauvola;
     private ImageToArray ita;
     private RidlerCalvard rc;
+    private Pun pun;
+    private KapurSahooWong ksw;
+    private Bradley bradley;
     
     public BufferedImage binarize(BufferedImage bi, int threshold) {
         for (int i = 0; i < bi.getHeight(); i++) {
@@ -62,13 +65,13 @@ public class Binarization {
         if(gs == null)
             gs = new GrayScale();
 //        ot = new OtsuThresholding();
-        ot = new Otsu();
+        otsu = new Otsu();
         if(ita == null)
             ita = new ImageToArray();
 //        bi = gs.grayScaleAvg(bi);
         bi = gs.grayScaleYUV(bi);
         int[] grayScaleArray = ita.convertToArrayGray(bi);
-        int threshold = (int) ot.getOtsuThreshold(grayScaleArray);
+        int threshold = (int) otsu.getOtsuThreshold(grayScaleArray);
         System.out.println(threshold);
         bi = binarize(bi, threshold);
         return bi;
@@ -125,6 +128,17 @@ public class Binarization {
 //        bi = gs.grayScaleAvg(bi);
         bi = gs.grayScaleYUV(bi);
         bi = sauvola.binarize(bi, side, k, r);
+        return bi;
+    }
+    
+    public BufferedImage bradleyBinarize(BufferedImage bi, int s, int t) {
+        if(bradley == null)
+            bradley = new Bradley();
+        if(gs == null)
+            gs = new GrayScale();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        bi = bradley.binarize(bi, s, t);
         return bi;
     }
     
@@ -198,6 +212,32 @@ public class Binarization {
 //        bi = gs.grayScaleAvg(bi);
         bi = gs.grayScaleYUV(bi);
         int threshold = (int) rc.getThreshold(bi);
+        System.out.println(threshold);
+        bi = binarize(bi, threshold);
+        return bi;
+    }
+    
+    public BufferedImage punBinarize(BufferedImage bi) {
+        if(pun == null)
+            pun = new Pun();
+        if(gs == null)
+            gs = new GrayScale();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        int threshold = (int) pun.getThreshold(bi);
+        System.out.println(threshold);
+        bi = binarize(bi, threshold);
+        return bi;
+    }
+    
+    public BufferedImage kswBinarize(BufferedImage bi) {
+        if(ksw == null)
+            ksw = new KapurSahooWong();
+        if(gs == null)
+            gs = new GrayScale();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        int threshold = (int) ksw.getThreshold(bi);
         System.out.println(threshold);
         bi = binarize(bi, threshold);
         return bi;

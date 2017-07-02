@@ -183,6 +183,14 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    private void bradleyBinarization(ActionEvent event) {
+        if(binarization == null)
+            binarization = new Binarization();
+        bi = binarization.bradleyBinarize(bi, Integer.parseInt(maskSide.getText()), 15);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
     private void whiteRohrerBinarization(ActionEvent event) {
         if(binarization == null)
             binarization = new Binarization();
@@ -211,6 +219,22 @@ public class FXMLDocumentController implements Initializable {
         if(binarization == null)
             binarization = new Binarization();
         bi = binarization.ridlerCalvardBinarize(bi);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
+    private void punBinarization(ActionEvent event) {
+        if(binarization == null)
+            binarization = new Binarization();
+        bi = binarization.punBinarize(bi);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
+    private void kswBinarization(ActionEvent event) {
+        if(binarization == null)
+            binarization = new Binarization();
+        bi = binarization.kswBinarize(bi);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
