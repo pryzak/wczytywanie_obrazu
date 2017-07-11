@@ -46,7 +46,7 @@
                         <Button fx:id="openingBtn" layoutX="37.0" layoutY="464.0" mnemonicParsing="false" onAction="#opening" prefHeight="25.0" prefWidth="149.0" text="Otwarcie" />
                         <Button fx:id="closingBtn" layoutX="37.0" layoutY="489.0" mnemonicParsing="false" onAction="#closing" prefHeight="25.0" prefWidth="149.0" text="Zamknięcie" />
                         <Button fx:id="hitOrMissBtn" layoutX="37.0" layoutY="514.0" mnemonicParsing="false" onAction="#hitOrMiss" prefHeight="25.0" prefWidth="149.0" text="Hit Or Miss" />
-                        <Button fx:id="skeletonizationBtn" layoutX="37.0" layoutY="539.0" mnemonicParsing="false" onAction="#skeletonization" prefHeight="25.0" prefWidth="149.0" text="Szkieletyzacja" />
+                        <Button fx:id="skeletonizationBtn" layoutX="37.0" layoutY="539.0" mnemonicParsing="false" onAction="#skeletonization2" prefHeight="25.0" prefWidth="149.0" text="Szkieletyzacja" />
                         <Button fx:id="lowPass1" layoutX="37.0" layoutY="688.0" mnemonicParsing="false" onAction="#lowPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr dolnoprzepustowy" />
                         <Button fx:id="highPass1" layoutX="37.0" layoutY="723.0" mnemonicParsing="false" onAction="#highPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr górnoprzepustowy" />
                         <Button fx:id="binarizeBHTBtn2" layoutX="37.0" layoutY="809.0" mnemonicParsing="false" onAction="#bhtBinarization2" prefHeight="25.0" prefWidth="149.0" text="BHT2" />
@@ -54,7 +54,11 @@
                         <TextField fx:id="maskSide" layoutX="37.0" layoutY="569.0" promptText="Długość maski" />
                         <Button fx:id="meanFilter" layoutX="37.0" layoutY="604.0" mnemonicParsing="false" onAction="#meanFilter" prefHeight="25.0" prefWidth="149.0" text="Filtr średniej kroczącej" />
                         <Button fx:id="medianFilter" layoutX="37.0" layoutY="634.0" mnemonicParsing="false" onAction="#medianFilter" prefHeight="25.0" prefWidth="149.0" text="Filtr medianowy" />
-                        <Button fx:id="negateBtn" layoutX="37.0" layoutY="762.0" mnemonicParsing="false" onAction="#negative" prefHeight="25.0" prefWidth="149.0" text="Negatyw" />                     
+                        <Button fx:id="negateBtn" layoutX="37.0" layoutY="762.0" mnemonicParsing="false" onAction="#negative" prefHeight="25.0" prefWidth="149.0" text="Negatyw" />  
+                        <Button fx:id="binarizeRidlerCalvardBtn" layoutX="37.0" layoutY="859.0" mnemonicParsing="false" onAction="#ridlerCalvardBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Ridlera Calvarda" />
+                        <Button fx:id="binarizePunBtn" layoutX="37.0" layoutY="884.0" mnemonicParsing="false" onAction="#punBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Puna" />
+                        <Button fx:id="binarizeKswBtn" layoutX="37.0" layoutY="909.0" mnemonicParsing="false" onAction="#kswBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Kapura" />
+                        <Button fx:id="binarizeBradleyBtn" layoutX="37.0" layoutY="934.0" mnemonicParsing="false" onAction="#bradleyBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Bradleya" />
                     </children>
       
                 </Pane>

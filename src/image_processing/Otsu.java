@@ -15,7 +15,7 @@ public class Otsu {
         int wF = 0;
 
         float varMax = 0;
-        int threshold = 0;
+        int threshold = 127;
         
         for (int t=0; t<256; t++) {
             wB += histogram[t];               // Weight Background

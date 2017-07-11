@@ -7,16 +7,32 @@
             <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/Binarization.java</file>
             <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/SE.java</file>
             <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/HistogramEqualization.java</file>
-            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/SE_Point.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/Negative.java</file>
             <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/gui/FXMLDocumentController.java</file>
             <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/Morphology.java</file>
-            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/BHT.java</file>
             <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/GrayScale.java</file>
-            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/DivideImage.java</file>
-            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/gui/Launcher.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/Bernsen.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/utils/SortArray.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/RidlerCalvard.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/Sauvola.java</file>
             <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/OtsuThresholding.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/utils/CompareImages.java</file>
             <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/gui/FXMLDocument.fxml</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/Pun.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/WhiteRohrer.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/Filters.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/SE_Point.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/BHT.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/DivideImage.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/utils/RotateMatrix.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/Niblack.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/utils/CloneImage.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/utils/StandardDeviation.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/utils/ImageToArray.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/gui/Launcher.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/Otsu.java</file>
             <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/HistogramHelper.java</file>
+            <file>file:/C:/Users/Krzysiek/Documents/NetBeansProjects/wczytywanie_obrazu/src/image_processing/MeanMedianBinarization.java</file>
         </group>
     </open-files>
 </project-private>
