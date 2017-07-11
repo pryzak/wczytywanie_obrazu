@@ -20,6 +20,8 @@ public class Binarization {
     private Pun pun;
     private KapurSahooWong ksw;
     private Bradley bradley;
+    private OptimalDistribution od;
+    private LocalEntropy le;
     
     public BufferedImage binarize(BufferedImage bi, int threshold) {
         for (int i = 0; i < bi.getHeight(); i++) {
@@ -71,7 +73,23 @@ public class Binarization {
 //        bi = gs.grayScaleAvg(bi);
         bi = gs.grayScaleYUV(bi);
         int[] grayScaleArray = ita.convertToArrayGray(bi);
-        int threshold = (int) otsu.getOtsuThreshold(grayScaleArray);
+        int threshold = otsu.getOtsuThreshold(grayScaleArray);
+        System.out.println(threshold);
+        bi = binarize(bi, threshold);
+        return bi;
+    }
+    
+    public BufferedImage optimalDistributionBinarize(BufferedImage bi) {
+        if(gs == null)
+            gs = new GrayScale();
+//        ot = new OtsuThresholding();
+        od = new OptimalDistribution();
+        if(ita == null)
+            ita = new ImageToArray();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        int[] grayScaleArray = ita.convertToArrayGray(bi);
+        int threshold = (int) od.getThreshold(grayScaleArray);
         System.out.println(threshold);
         bi = binarize(bi, threshold);
         return bi;
@@ -238,6 +256,19 @@ public class Binarization {
 //        bi = gs.grayScaleAvg(bi);
         bi = gs.grayScaleYUV(bi);
         int threshold = (int) ksw.getThreshold(bi);
+        System.out.println(threshold);
+        bi = binarize(bi, threshold);
+        return bi;
+    }
+    
+    public BufferedImage localEntropyBinarize(BufferedImage bi) {
+        if(le == null)
+            le = new LocalEntropy();
+        if(gs == null)
+            gs = new GrayScale();
+//        bi = gs.grayScaleAvg(bi);
+        bi = gs.grayScaleYUV(bi);
+        int threshold = le.getThreshold(bi);
         System.out.println(threshold);
         bi = binarize(bi, threshold);
         return bi;

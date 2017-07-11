@@ -152,6 +152,14 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    private void optimalDistributionBinarization(ActionEvent event) {
+        if(binarization == null)
+            binarization = new Binarization();
+        bi = binarization.optimalDistributionBinarize(bi);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
     private void bhtBinarization(ActionEvent event) {
         if(binarization == null)
             binarization = new Binarization();
@@ -235,6 +243,14 @@ public class FXMLDocumentController implements Initializable {
         if(binarization == null)
             binarization = new Binarization();
         bi = binarization.kswBinarize(bi);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
+    private void localEntropyBinarization(ActionEvent event) {
+        if(binarization == null)
+            binarization = new Binarization();
+        bi = binarization.localEntropyBinarize(bi);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
