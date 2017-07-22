@@ -3,12 +3,15 @@ package gui;
 import image_processing.Binarization;
 import image_processing.DivideImage;
 import image_processing.Filters;
+import image_processing.GaussianFilter;
 import image_processing.GrayScale;
 import image_processing.HistogramEqualization;
 import image_processing.K3M;
+import image_processing.KMM;
 import image_processing.Morphology;
 import image_processing.Negative;
 import image_processing.SE;
+import image_processing.WienerFilter;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,6 +28,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
+import utils.CloneImage;
+import utils.CompareImages;
+import utils.StandardDeviation;
 
 public class FXMLDocumentController implements Initializable {
 
@@ -34,10 +40,13 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private BufferedImage bi;
+    private BufferedImage gt;
     private BufferedImage loadedbi;
 
     @FXML
     private Label labelPlik;
+    @FXML
+    private Label labelPlik2;
 
     @FXML
     private ImageView imageView;
@@ -48,7 +57,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     TextField threshold; 
     @FXML
-    TextField maskSide; 
+    TextField maskSide;
+    @FXML
+    TextField newFileName;
     
     private GrayScale gs;
     private Binarization binarization;
@@ -57,7 +68,9 @@ public class FXMLDocumentController implements Initializable {
     private Filters filters;
     private DivideImage di;
     private K3M k3m;
-
+    
+    private CompareImages ci;
+    
     @FXML
     private void chooseFile(ActionEvent event) {
         JFileChooser fc = new JFileChooser();
@@ -71,6 +84,22 @@ public class FXMLDocumentController implements Initializable {
                 loadedbi = ImageIO.read(obraz);
                 imageView.setImage(SwingFXUtils.toFXImage(bi, null));
                 resetImage.setDisable(false);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+    
+    @FXML
+    private void chooseGroundTruthFile(ActionEvent event) {
+        JFileChooser fc = new JFileChooser();
+        File obraz;
+        int returnValue = fc.showDialog(null, "Wybierz plik");
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            obraz = fc.getSelectedFile();
+            try {
+                labelPlik2.setText(obraz.getName());
+                gt = ImageIO.read(obraz);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -202,7 +231,7 @@ public class FXMLDocumentController implements Initializable {
     private void whiteRohrerBinarization(ActionEvent event) {
         if(binarization == null)
             binarization = new Binarization();
-        bi = binarization.whiteRohrerBinarize(bi, 23, 2.0);
+        bi = binarization.whiteRohrerBinarize(bi, Integer.parseInt(maskSide.getText()), 1.5);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
@@ -210,7 +239,7 @@ public class FXMLDocumentController implements Initializable {
     private void niblackBinarization(ActionEvent event) {
         if(binarization == null)
             binarization = new Binarization();
-        bi = binarization.niblackBinarize(bi, 15, -1.0);
+        bi = binarization.niblackBinarize(bi, Integer.parseInt(maskSide.getText()), -1.0);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
@@ -218,7 +247,7 @@ public class FXMLDocumentController implements Initializable {
     private void sauvolaBinarization(ActionEvent event) {
         if(binarization == null)
             binarization = new Binarization();
-        bi = binarization.sauvolaBinarize(bi, 15, 0.3, 128);
+        bi = binarization.sauvolaBinarize(bi, Integer.parseInt(maskSide.getText()), 0.3, 128);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
@@ -328,10 +357,19 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    private void skeletonization3(ActionEvent event) {
+        bi = KMM.thin(bi);
+        imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
     private void lowPass1(ActionEvent event) {
         if(filters == null)
             filters = new Filters();
-        bi = filters.filter(bi, filters.lowPass);
+//        bi = filters.filter(bi, filters.lowPass);
+//        bi = filters.filter(bi, filters.gauss1);
+//        bi = new WienerFilter().filter(bi);
+        bi = new GaussianFilter().filter(bi, null);
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
     }
     
@@ -362,6 +400,61 @@ public class FXMLDocumentController implements Initializable {
             filters = new Filters();
         bi = filters.medianFilter(bi, Integer.parseInt(maskSide.getText()));
         imageView.setImage(SwingFXUtils.toFXImage(bi, null));
+    }
+    
+    @FXML
+    private void compare(ActionEvent event) {
+        if(ci == null)
+            ci = new CompareImages();
+//        BufferedImage gt = new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB);
+//        BufferedImage bi = new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB);
+//        for(int i = 0; i < 3; i++) {
+//            for(int j = 0; j < 3; j++) {
+//                Color c = new Color(255, 255, 255);
+//                gt.setRGB(i, j, c.getRGB());
+//                bi.setRGB(i, j, c.getRGB());
+//                if(i == j) {
+//                    c = new Color(0, 0, 0);
+//                    gt.setRGB(i, j, c.getRGB());
+//                    bi.setRGB(i, j, c.getRGB());
+//                }
+//            }
+//        }
+//        Color c = new Color(0, 0, 0);
+//        bi.setRGB(2, 1, c.getRGB());
+//        bi.setRGB(1, 2, c.getRGB());
+        System.out.println("Misclassification error: " + ci.calculateMissclaficationError(bi, gt));
+        System.out.println("Misclassification error 2: " + ci.ME(bi, gt));
+        BufferedImage cloned = new CloneImage().deepCopy(loadedbi);
+//        cloned = new GrayScale().grayScaleYUV(cloned);
+//        cloned.setRGB(0, 0, new Color(30, 30, 30).getRGB());
+//        cloned.setRGB(1, 1, new Color(50, 50, 50).getRGB());
+//        cloned.setRGB(2, 2, new Color(20, 20, 20).getRGB());
+//        for(int i = 0; i < 3; i++) {
+//            for(int j = 0; j < 3; j++) {
+//                System.out.print(new Color(cloned.getRGB(j, i)).getRed() + " ");
+//            }
+//            System.out.println();
+//        }
+        System.out.println("Region nonuniformity: " + ci.calculateRegionNonuniformity(cloned, bi));
+        System.out.println("Relative foreground area error: " + ci.calculateRelativeForegroundAreaError(bi, gt));
+        System.out.println("Relative foreground area error 2: " + ci.RFAE(bi, gt));
+        System.out.println("Accuracy: " + ci.ACCURACY(bi, gt));
+        System.out.println("Sensitivity: " + ci.SENSITIVITY(bi, gt));
+        System.out.println("Specificity: " + ci.SPECIFICITY(bi, gt));
+        System.out.println("Extraction error rate: " + ci.EER(bi, gt));
+        System.out.println("F_Measure: " + ci.FMEASURE(bi, gt));
+        System.out.println("PSNR: " + ci.PSNR(bi, gt));
+    }
+    
+    @FXML
+    private void saveFile(ActionEvent event) {
+        File newFile = new File(newFileName.getText() + ".jpg");
+        try {
+            ImageIO.write(bi, "JPG", newFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

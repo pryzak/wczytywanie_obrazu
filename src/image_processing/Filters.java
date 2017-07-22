@@ -11,6 +11,7 @@ import java.util.List;
 public class Filters {
 
     public static float lowPass[] = new float[]{1.f / 9, 1.f / 9, 1.f / 9, 1.f / 9, 1.f / 9, 1.f / 9, 1.f / 9, 1.f / 9, 1.f / 9};
+    public static float gauss1[] = new float[]{1.f / 16, 2.f / 16, 1.f / 16, 2.f / 16, 4.f / 16, 2.f / 16, 1.f / 16, 2.f / 16, 1.f / 16};
     public static float highPass[] = new float[]{-1, -1, -1, -1, 9, -1, -1, -1, -1};
 
     public BufferedImage filter(BufferedImage bi, float[] filter) {

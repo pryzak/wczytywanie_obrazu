@@ -9,6 +9,10 @@ import java.util.List;
 public class MeanMedianBinarization {
     
     public BufferedImage meanBinarize1(BufferedImage bi, int x) throws RuntimeException {
+        return meanBinarize1(bi, x, 0);
+    }
+    
+    public BufferedImage meanBinarize1(BufferedImage bi, int x, int eps) throws RuntimeException {
         if(x % 2 == 0)
             throw new RuntimeException("x is even!");
         int n = (x - 1) / 2;
@@ -35,7 +39,7 @@ public class MeanMedianBinarization {
                 int threshold = (sumRed / countPixels + sumGreen / countPixels + sumBlue / countPixels) / 3;
                 Color color = new Color(bi.getRGB(j, i));
                 Color newColor;
-                if((color.getRed() + color.getGreen() + color.getBlue()) / 3 < threshold)
+                if((color.getRed() + color.getGreen() + color.getBlue()) / 3 < threshold - eps)
                     newColor = new Color(0, 0, 0);
                 else
                     newColor = new Color(255, 255, 255);
@@ -51,6 +55,10 @@ public class MeanMedianBinarization {
     }
     
     public BufferedImage meanBinarize2(BufferedImage bi, int x) throws RuntimeException {
+        return meanBinarize2(bi, x, 0);
+    }
+    
+    public BufferedImage meanBinarize2(BufferedImage bi, int x, int eps) throws RuntimeException {
         if(x % 2 == 0)
             throw new RuntimeException("x is even!");
         int n = (x - 1) / 2;
@@ -77,7 +85,7 @@ public class MeanMedianBinarization {
                 int threshold = (sumRed / countPixels + sumGreen / countPixels + sumBlue / countPixels) / 3;
                 Color color = new Color(bi.getRGB(j, i));
                 Color newColor;
-                if(color.getRed() < threshold || color.getGreen() < threshold || color.getBlue() < threshold)
+                if(color.getRed() < threshold || color.getGreen() < threshold || color.getBlue() < threshold - eps)
                     newColor = new Color(0, 0, 0);
                 else
                     newColor = new Color(255, 255, 255);
@@ -93,6 +101,10 @@ public class MeanMedianBinarization {
     }
     
     public BufferedImage medianBinarize1(BufferedImage bi, int x) throws RuntimeException {
+        return medianBinarize1(bi, x, 0);
+    }
+    
+    public BufferedImage medianBinarize1(BufferedImage bi, int x, int eps) throws RuntimeException {
         if(x % 2 == 0)
             throw new RuntimeException("x is even!");
         int n = (x - 1) / 2;
@@ -141,7 +153,7 @@ public class MeanMedianBinarization {
                 int threshold = (medianReds + medianGreens + medianBlues) / 3;
                 Color color = new Color(bi.getRGB(j, i));
                 Color newColor;
-                if((color.getRed() + color.getGreen() + color.getBlue()) / 3 < threshold)
+                if((color.getRed() + color.getGreen() + color.getBlue()) / 3 < threshold - eps)
                     newColor = new Color(0, 0, 0);
                 else
                     newColor = new Color(255, 255, 255);
@@ -157,6 +169,10 @@ public class MeanMedianBinarization {
     }
     
     public BufferedImage medianBinarize2(BufferedImage bi, int x) throws RuntimeException {
+        return medianBinarize2(bi, x, 0);
+    }
+    
+    public BufferedImage medianBinarize2(BufferedImage bi, int x, int eps) throws RuntimeException {
         if(x % 2 == 0)
             throw new RuntimeException("x is even!");
         int n = (x - 1) / 2;
@@ -205,7 +221,7 @@ public class MeanMedianBinarization {
                 int threshold = (medianReds + medianGreens + medianBlues) / 3;
                 Color color = new Color(bi.getRGB(j, i));
                 Color newColor;
-                if(color.getRed() < threshold || color.getGreen() < threshold || color.getBlue() < threshold)
+                if(color.getRed() < threshold || color.getGreen() < threshold || color.getBlue() < threshold - eps)
                     newColor = new Color(0, 0, 0);
                 else
                     newColor = new Color(255, 255, 255);

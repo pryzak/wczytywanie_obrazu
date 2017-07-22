@@ -214,4 +214,13 @@ public class Morphology {
         }
     }
     
+    public BufferedImage extractEdges(BufferedImage bi) {
+        CloneImage ci = new CloneImage();
+        BufferedImage biClone = ci.deepCopy(bi);
+        BufferedImage biClone2 = ci.deepCopy(bi);
+        biClone = erosion(biClone, morf0);
+        biClone2 = substract(biClone2, biClone);
+        return biClone2;
+    }
+    
 }

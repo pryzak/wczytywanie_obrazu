@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="607.0" prefWidth="1288.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLDocumentController">
+<AnchorPane prefHeight="607.0" prefWidth="1288.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXMLDocumentController">
     <children>
       
-        <ScrollPane id="threshold" fx:id="windowPane" prefHeight="607.0" prefWidth="1288.0"  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ScrollPane id="threshold" fx:id="windowPane" prefHeight="607.0" prefWidth="1288.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <content>
                 <Pane prefHeight="950.0" prefWidth="1400.0">
                     <children>
@@ -46,7 +43,7 @@
                         <Button fx:id="openingBtn" layoutX="37.0" layoutY="464.0" mnemonicParsing="false" onAction="#opening" prefHeight="25.0" prefWidth="149.0" text="Otwarcie" />
                         <Button fx:id="closingBtn" layoutX="37.0" layoutY="489.0" mnemonicParsing="false" onAction="#closing" prefHeight="25.0" prefWidth="149.0" text="Zamknięcie" />
                         <Button fx:id="hitOrMissBtn" layoutX="37.0" layoutY="514.0" mnemonicParsing="false" onAction="#hitOrMiss" prefHeight="25.0" prefWidth="149.0" text="Hit Or Miss" />
-                        <Button fx:id="skeletonizationBtn" layoutX="37.0" layoutY="539.0" mnemonicParsing="false" onAction="#skeletonization2" prefHeight="25.0" prefWidth="149.0" text="Szkieletyzacja" />
+                        <Button fx:id="skeletonizationBtn" layoutX="37.0" layoutY="539.0" mnemonicParsing="false" onAction="#skeletonization3" prefHeight="25.0" prefWidth="149.0" text="Szkieletyzacja" />
                         <Button fx:id="lowPass1" layoutX="37.0" layoutY="688.0" mnemonicParsing="false" onAction="#lowPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr dolnoprzepustowy" />
                         <Button fx:id="highPass1" layoutX="37.0" layoutY="723.0" mnemonicParsing="false" onAction="#highPass1" prefHeight="25.0" prefWidth="149.0" text="Filtr górnoprzepustowy" />
                         <Button fx:id="binarizeBHTBtn2" layoutX="37.0" layoutY="809.0" mnemonicParsing="false" onAction="#bhtBinarization2" prefHeight="25.0" prefWidth="149.0" text="BHT2" />
@@ -59,8 +56,12 @@
                         <Button fx:id="binarizePunBtn" layoutX="37.0" layoutY="884.0" mnemonicParsing="false" onAction="#punBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Puna" />
                         <Button fx:id="binarizeKswBtn" layoutX="37.0" layoutY="909.0" mnemonicParsing="false" onAction="#kswBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Kapura" />
                         <Button fx:id="binarizeBradleyBtn" layoutX="37.0" layoutY="934.0" mnemonicParsing="false" onAction="#bradleyBinarization" prefHeight="25.0" prefWidth="149.0" text="Binaryzacja Bradleya" />
+                        <Button fx:id="chooseFile1" layoutX="282.0" layoutY="890.0" mnemonicParsing="false" onAction="#chooseGroundTruthFile" prefHeight="25.0" prefWidth="249.0" text="Wybierz plik do porównania..." />
+                        <Label fx:id="labelPlik2" layoutX="542.0" layoutY="890.0" prefHeight="25.0" prefWidth="367.0" text="Nie wybrano pliku" />
+                        <Button fx:id="compare" layoutX="282.0" layoutY="940.0" mnemonicParsing="false" onAction="#compare" prefHeight="25.0" prefWidth="149.0" text="Porównaj" />
+                        <TextField fx:id="newFileName" layoutX="942.0" layoutY="890.0" promptText="Nazwa pliku" />
+                        <Button fx:id="saveFile" layoutX="1112.0" layoutY="890.0" mnemonicParsing="false" onAction="#saveFile" prefHeight="25.0" prefWidth="149.0" text="Zapisz aktualny obraz" />
                     </children>
-      
                 </Pane>
             </content>
         </ScrollPane>
