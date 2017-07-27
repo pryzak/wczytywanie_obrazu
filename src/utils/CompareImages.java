@@ -11,7 +11,7 @@ import java.util.List;
 public class CompareImages {
     
     public boolean compareEqual(BufferedImage a, BufferedImage b) {
-        if(a.getHeight() != b.getHeight() || a.getWidth() != b.getWidth() || a.getType() != b.getType())
+        if(a.getHeight() != b.getHeight() || a.getWidth() != b.getWidth())
             throw new RuntimeException("Can't compare!");
         for (int i = 0; i < a.getHeight(); i++) {
             for (int j = 0; j < a.getWidth(); j++) {
@@ -23,7 +23,7 @@ public class CompareImages {
     }
     
     public double comparePercent(BufferedImage a, BufferedImage b) {
-        if(a.getHeight() != b.getHeight() || a.getWidth() != b.getWidth() || a.getType() != b.getType())
+        if(a.getHeight() != b.getHeight() || a.getWidth() != b.getWidth())
             throw new RuntimeException("Can't compare!");
         int mn = a.getWidth() * a.getHeight();
         int correct = 0;
@@ -135,7 +135,7 @@ public class CompareImages {
     }
     
     public double calculateRelativeForegroundAreaError(BufferedImage result, BufferedImage groundTruth) {
-        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth() || result.getType() != groundTruth.getType())
+        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth())
             throw new RuntimeException("Can't compare!");
         int a_t = 0, a_o = 0;
         int common = 0;
@@ -164,7 +164,7 @@ public class CompareImages {
     }
     
     public double calculateEdgeMismatch(BufferedImage result, BufferedImage groundTruth) {
-        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth() || result.getType() != groundTruth.getType())
+        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth())
             throw new RuntimeException("Can't compare!");
         int c_e = 0;
         List<Pixel> e_o = new ArrayList<>();
@@ -206,7 +206,7 @@ public class CompareImages {
     }
     
     public double ME(BufferedImage result, BufferedImage groundTruth) {
-        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth() || result.getType() != groundTruth.getType())
+        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth())
             throw new RuntimeException("Can't compare!");
         double tp = 0, fp = 0, tn = 0, fn = 0;
         for(int i = 0; i < result.getWidth(); i++) {
@@ -230,7 +230,7 @@ public class CompareImages {
     }
     
     public double RFAE(BufferedImage result, BufferedImage groundTruth) {
-        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth() || result.getType() != groundTruth.getType())
+        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth())
             throw new RuntimeException("Can't compare!");
         double tp = 0, fp = 0, tn = 0, fn = 0;
         for(int i = 0; i < result.getWidth(); i++) {
@@ -262,7 +262,7 @@ public class CompareImages {
     }
     
     public double ACCURACY(BufferedImage result, BufferedImage groundTruth) {
-        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth() || result.getType() != groundTruth.getType())
+        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth())
             throw new RuntimeException("Can't compare!");
         double tp = 0, fp = 0, tn = 0, fn = 0;
         for(int i = 0; i < result.getWidth(); i++) {
@@ -286,7 +286,7 @@ public class CompareImages {
     }
     
     public double SENSITIVITY(BufferedImage result, BufferedImage groundTruth) {
-        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth() || result.getType() != groundTruth.getType())
+        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth())
             throw new RuntimeException("Can't compare!");
         double tp = 0, fp = 0, tn = 0, fn = 0;
         for(int i = 0; i < result.getWidth(); i++) {
@@ -310,7 +310,7 @@ public class CompareImages {
     }
     
     public double SPECIFICITY(BufferedImage result, BufferedImage groundTruth) {
-        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth() || result.getType() != groundTruth.getType())
+        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth())
             throw new RuntimeException("Can't compare!");
         double tp = 0, fp = 0, tn = 0, fn = 0;
         for(int i = 0; i < result.getWidth(); i++) {
@@ -334,7 +334,7 @@ public class CompareImages {
     }
     
     public double EER(BufferedImage result, BufferedImage groundTruth) {
-        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth() || result.getType() != groundTruth.getType())
+        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth())
             throw new RuntimeException("Can't compare!");
         double tp = 0, fp = 0, tn = 0, fn = 0;
         for(int i = 0; i < result.getWidth(); i++) {
@@ -358,7 +358,7 @@ public class CompareImages {
     }
     
     public double FMEASURE(BufferedImage result, BufferedImage groundTruth) {
-        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth() || result.getType() != groundTruth.getType())
+        if(result.getHeight() != groundTruth.getHeight() || result.getWidth() != groundTruth.getWidth())
             throw new RuntimeException("Can't compare!");
         double tp = 0, fp = 0, tn = 0, fn = 0;
         for(int i = 0; i < result.getWidth(); i++) {
