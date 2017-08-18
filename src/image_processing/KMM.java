@@ -91,6 +91,16 @@ public final class KMM {
     });
 
     public static final BufferedImage thin(BufferedImage img) {
+        for (int i = 0; i < img.getHeight(); i++) {
+            for (int j = 0; j < img.getWidth(); j++) {
+                Color c = new Color(img.getRGB(j, i));
+                if((c.getRed() != 0 && c.getRed() != 255) ||
+                       (c.getGreen() != 0 && c.getGreen() != 255) ||
+                        (c.getBlue() != 0 && c.getBlue() != 255) ||
+                        (c.getRed() != c.getGreen() || c.getRed() != c.getBlue() || c.getGreen() != c.getBlue()))
+                    throw new RuntimeException("Image is not binary   " + c.getRed() + ", " + c.getGreen() + ", " + c.getBlue());
+            }
+        }
         ImageBytes bytes = new ImageBytes(img);
 
         boolean thinned;
